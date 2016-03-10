@@ -79,19 +79,23 @@ def associa_km():
     return percorsi_km
 
 # for k, v in associa_km().items():
-   print k, v
+#   print k, v
 
-# STEP 5 - funzione che associa ad ogni corsa una lista di valori di orario di arrivo
+# STEP 5 - funzione che associa ad ogni corsa una lista di
+# valori di orario di arrivo
 
 
 def associa_orario():
-    percorsi_orario = dict.fromkeys(estrai_corse(), list(str()))
+    percorsi_orario = dict.fromkeys(estrai_corse(), list())
     rownum = 0
     for row in read_csv_generico('ORARI.csv'):
         if rownum != 0 and row[6] in percorsi_orario.keys():
-            list.insert(row[9])
+            percorsi_orario[row[6]].append(row[9])
         rownum += 1
     return percorsi_orario
+
+for k, v in associa_orario().items():
+    print k, v
 
 
 def conv(s):
